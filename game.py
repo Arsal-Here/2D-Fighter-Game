@@ -19,16 +19,8 @@ class Player:
         self.sprites = []
         self.curr = 0
         self.IsAnimate = False
-        self.sprites.append(pygame.image.load("attack_1.png"))
-        self.sprites.append(pygame.image.load("attack_2.png"))
-        self.sprites.append(pygame.image.load("attack_3.png"))
-        self.sprites.append(pygame.image.load("attack_4.png"))
-        self.sprites.append(pygame.image.load("attack_5.png"))
-        self.sprites.append(pygame.image.load("attack_6.png"))
-        self.sprites.append(pygame.image.load("attack_7.png"))
-        self.sprites.append(pygame.image.load("attack_8.png"))
-        self.sprites.append(pygame.image.load("attack_9.png"))
-        self.sprites.append(pygame.image.load("attack_10.png"))
+        for i in range(1,11):
+            self.sprites.append(pygame.image.load(f"attack_{i}.png"))
 
         self.image = self.sprites[self.curr]
         self.x = x
@@ -62,12 +54,20 @@ def main():
                 player.animate()
             elif key[pygame.K_DOWN]:
                 player.y+=100
+                if player.y>=HEIGHT:
+                    player.y-=100
             elif key[pygame.K_UP]:
                 player.y-=100
+                if player.y<0:
+                    player.y+=100
             elif key[pygame.K_RIGHT]:
                 player.x+=100
+                if player.x>=WIDTH:
+                    player.x-=100
             elif key[pygame.K_LEFT]:
                 player.x-=100
+                if player.x<0:
+                    player.x+=100
         
         player.update()
         draw(player)
