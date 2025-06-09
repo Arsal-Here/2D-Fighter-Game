@@ -34,15 +34,27 @@ def draw(player,player2,screen,p1_life,p2_life):
         
 
         p1_coord=50
+        rec = pygame.Rect(p1_coord,50,50,30) 
+        pygame.draw.line(WIN, "black", rec.topleft, rec.bottomleft,3)   # Left
+        pygame.draw.line(WIN, "black", rec.topright, rec.bottomright, 3) # Right
+
         for i in range(0,p1_life):
             rec = pygame.Rect(p1_coord,50,50,30) 
             pygame.draw.rect(WIN,"red",rec)
+            pygame.draw.line(WIN, "black", rec.topleft, rec.topright, 3)     # Top
+            pygame.draw.line(WIN, "black", rec.bottomleft, rec.bottomright, 3)  # Bottom
             p1_coord+=50
         
         p2_coord = WIDTH-100
+        rec2 = pygame.Rect(p2_coord,50,50,30) 
+        pygame.draw.line(WIN, "black", rec2.topleft, rec2.bottomleft, 3)   # Left
+        pygame.draw.line(WIN, "black", rec2.topright, rec2.bottomright, 3) # Right
+
         for i in range(0,p2_life):
             rec2 = pygame.Rect(p2_coord,50,50,30) 
             pygame.draw.rect(WIN,"red",rec2)
+            pygame.draw.line(WIN, "black", rec2.topleft, rec2.topright, 3)     # Top
+            pygame.draw.line(WIN, "black", rec2.bottomleft, rec2.bottomright, 3)  # Bottom
             p2_coord-=50
 
     key = pygame.key.get_pressed()
