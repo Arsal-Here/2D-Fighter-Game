@@ -60,10 +60,15 @@ def draw(player,player2,screen,p1_life,p2_life):
     key = pygame.key.get_pressed()
     if p1_life<=0:
         WIN.blit(p2win,(0,0))
+        restart_msg = FONT.render("Press R to Restart", True, "white")
+        WIN.blit(restart_msg, (WIDTH//2 - restart_msg.get_width()//2, HEIGHT - 60))    
+
         
     elif p2_life<=0:
-        WIN.blit(p1win,(0,0))        
-
+        WIN.blit(p1win,(0,0))    
+        restart_msg = FONT.render("Press R to Restart", True, "white")
+        WIN.blit(restart_msg, (WIDTH//2 - restart_msg.get_width()//2, HEIGHT - 60))    
+        
     pygame.display.update()
 
 class PlayerLeft:
@@ -118,15 +123,22 @@ class PlayerRight:
 clock = pygame.time.Clock()
 
 def main():
-    p1_life = 10
-    p2_life = 10
+    def reset_game():
+        return 10, 10, PlayerLeft(10, 300, punch), PlayerRight(900, 300, punch),  False
+
+    p1_life, p2_life, player, player2, game_over = reset_game()
+
+    game_over = False
     run = True
     current_screen = title
     clock.tick(60)
-    player = PlayerLeft(10,300,punch)
-    player2 = PlayerRight(900,300,punch)
     while run:
         for event in pygame.event.get():
+            if game_over:
+                    if event.key == pygame.K_r:  
+                        p1_life, p2_life, player, player2,  game_over = reset_game()
+                        current_screen = bg
+                        continue
             if event.type == pygame.QUIT:
                 run = False
                 break
@@ -166,6 +178,8 @@ def main():
 
                 elif event.key == pygame.K_RETURN:  #background
                     current_screen = bg
+        if p1_life <= 0 or p2_life <= 0:
+            game_over = True
                 
         player.update()
         player2.update()
