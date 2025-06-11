@@ -131,7 +131,7 @@ def main():
     current_screen = title
 
     while run:
-        clock.tick(60)  # ✅ Keep this inside the loop
+        clock.tick(60)  #  Keep this inside the loop
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -146,12 +146,12 @@ def main():
                         run = False  # Exit on any key
             else:
                 if current_screen == title and event.type == pygame.KEYDOWN:
-                    current_screen = bg  # ✅ Any key starts the game
+                    current_screen = bg  # Any key starts the game
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
                         player.animate()
-                        if abs(player.x - player2.x) < c_width / 2:  # ✅ Better hit detection
+                        if abs(player.x - player2.x) < c_width / 2:  #  Better hit detection
                             player2.x += 50
                             if p2_life > 0:
                                 p2_life -= 1
