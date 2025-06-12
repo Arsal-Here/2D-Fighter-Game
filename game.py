@@ -25,10 +25,10 @@ c_width = 400
 
 def draw(player, player2, screen, p1_life, p2_life):
     current_screen = screen
-    p1msg = FONT.render(f"Player 1", 1, "white")
-    p2msg = FONT.render(f"Player 2", 1, "white")
-    p1_ins = FONT.render("A-left D-Right W-Punch",1,"white")
-    p2_ins = FONT.render("J-left L-Right I-Punch",1,"white")
+    p1msg = FONT.render(f"Player 1", 1,"Black")
+    p2msg = FONT.render(f"Player 2", 1,"Black")
+    p1_ins = FONT.render("A-left  D-Right  W-Punch",1,"white")
+    p2_ins = FONT.render("J-left  L-Right  I-Punch",1,"white")
     WIN.blit(current_screen, (0, 0))
 
     if current_screen == bg:
@@ -44,7 +44,7 @@ def draw(player, player2, screen, p1_life, p2_life):
         # Player 1 health bar
         p1_coord = 50
         for i in range(p1_life):
-            rec = pygame.Rect(p1_coord, 50, 50, 30)
+            rec = pygame.Rect(p1_coord, 55, 50, 30)
             pygame.draw.rect(WIN, "red", rec)
             pygame.draw.line(WIN, "black", rec.topleft, rec.topright, 3)
             pygame.draw.line(WIN, "black", rec.bottomleft, rec.bottomright, 3)
@@ -57,7 +57,7 @@ def draw(player, player2, screen, p1_life, p2_life):
         # Player 2 health bar
         p2_coord = WIDTH - 100
         for i in range(p2_life):
-            rec2 = pygame.Rect(p2_coord, 50, 50, 30)
+            rec2 = pygame.Rect(p2_coord, 55, 50, 30)
             pygame.draw.rect(WIN, "red", rec2)
             pygame.draw.line(WIN, "black", rec2.topleft, rec2.topright, 3)
             pygame.draw.line(WIN, "black", rec2.bottomleft, rec2.bottomright, 3)
