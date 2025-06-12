@@ -151,8 +151,8 @@ def main():
                     else:
                         run = False  # Exit on any key
             else:
-                if current_screen == title and event.type == pygame.KEYDOWN:
-                    current_screen = bg  # Any key starts the game
+                if current_screen == title and event.type == pygame.KEYDOWN and event.key==pygame.K_RETURN:
+                    current_screen = bg  # Enter key starts the game
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_w:
