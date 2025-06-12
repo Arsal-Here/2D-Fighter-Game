@@ -27,11 +27,17 @@ def draw(player, player2, screen, p1_life, p2_life):
     current_screen = screen
     p1msg = FONT.render(f"Player 1", 1, "white")
     p2msg = FONT.render(f"Player 2", 1, "white")
+    p1_ins = FONT.render("A-left D-Right W-Punch",1,"white")
+    p2_ins = FONT.render("J-left L-Right I-Punch",1,"white")
     WIN.blit(current_screen, (0, 0))
 
     if current_screen == bg:
         WIN.blit(player.image, (player.x, player.y))
         WIN.blit(player2.image, (player2.x, player2.y))
+
+        WIN.blit(p1_ins, (10, 750))
+        WIN.blit(p2_ins, (950, 750))
+
         WIN.blit(p1msg, (50, 10))
         WIN.blit(p2msg, (WIDTH - 160, 10))
 
@@ -124,7 +130,7 @@ clock = pygame.time.Clock()
 
 def main():
     def reset_game():
-        return 10, 10, PlayerLeft(10, 300, punch), PlayerRight(900, 300, punch), False
+        return 10, 10, PlayerLeft(10, 343, punch), PlayerRight(900, 340, punch), False
 
     p1_life, p2_life, player, player2, game_over = reset_game()
     run = True
@@ -149,33 +155,33 @@ def main():
                     current_screen = bg  # Any key starts the game
 
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
+                    if event.key == pygame.K_w:
                         player.animate()
                         if abs(player.x - player2.x) < c_width / 2:  #  Better hit detection
                             player2.x += 50
                             if p2_life > 0:
                                 p2_life -= 1
 
-                    elif event.key == pygame.K_k:
+                    elif event.key == pygame.K_i:
                         player2.animate()
                         if abs(player.x - player2.x) < c_width / 2:
                             player.x -= 50
                             if p1_life > 0:
                                 p1_life -= 1
 
-                    elif event.key == pygame.K_RIGHT:
+                    elif event.key == pygame.K_d:
                         player.x += 100
                         if player.x + c_width >= WIDTH:
                             player.x -= 100
-                    elif event.key == pygame.K_LEFT:
+                    elif event.key == pygame.K_a:
                         player.x -= 100
                         if player.x < 0:
                             player.x += 100
-                    elif event.key == pygame.K_UP:
+                    elif event.key == pygame.K_j:
                         player2.x -= 100
                         if player2.x < 0:
                             player2.x += 100
-                    elif event.key == pygame.K_DOWN:
+                    elif event.key == pygame.K_l:
                         player2.x += 100
                         if player2.x + 300 >= WIDTH:
                             player2.x -= 100
